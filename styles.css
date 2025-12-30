@@ -1,0 +1,245 @@
+/* --- CSS Variables & Reset --- */
+        :root {
+            --font-primary: 'Inter Tight', sans-serif;
+            --color-bg-main: #ffffff;
+            --color-bg-card: #F5F5F5;
+            --color-text-heading: #000000;
+            --color-text-body: #1A1A1A;
+            --color-text-meta: #666666;
+            --color-btn-bg: #EFEFEF;
+            --color-btn-hover: #ff8400;
+            
+            /* Dynamic Spacing */
+            --section-padding: clamp(30px, 5vw, 60px); 
+            --card-padding: clamp(24px, 4vw, 60px);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            background-color: var(--color-bg-main);
+            color: var(--color-text-body);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden; /* Prevent horizontal scroll on mobile */
+        }
+
+        /* --- Main Layout Container --- */
+        .review-section {
+            padding: var(--section-padding) 5%; /* % padding for sides */
+            max-width: 1400px; /* Slightly wider max-width */
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* --- Typography --- */
+        h1.section-title {
+            /* Fluid Typography: Scales smoothly between 36px and 60px */
+            font-size: clamp(36px, 5vw, 60px);
+            font-weight: 600;
+            letter-spacing: -0.04em;
+            color: var(--color-text-heading);
+            margin-bottom: clamp(30px, 5vw, 60px);
+            line-height: 1.1;
+        }
+
+        /* --- Slider Mechanisms --- */
+        .slider-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            /* Touch action adjustment for better swipe experience */
+            touch-action: pan-y; 
+        }
+
+        .slider-track {
+            display: flex;
+            width: 100%;
+            transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+            will-change: transform; /* Performance optimization */
+        }
+
+        .review-slide {
+            min-width: 100%;
+            display: grid;
+            /* Default: Mobile First (Stacking) handled in media queries below, 
+               but setting up the grid structure here */
+            grid-template-columns: 1fr; 
+            gap: 20px;
+            align-items: stretch; /* Make heights match */
+        }
+
+        /* --- Left Card Styling --- */
+        .review-card-left {
+            background-color: var(--color-bg-card);
+            border-radius: 12px; /* Slightly softer corners */
+            padding: var(--card-padding);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            /* Remove fixed min-height, let content drive it, but ensure minimum breathing room */
+            min-height: 300px; 
+            height: 100%;
+        }
+
+        .logo-container {
+            margin-bottom: 30px;
+        }
+
+        .logo-container svg {
+            width: 40px;
+            height: 40px;
+        }
+
+        .review-text {
+            /* Fluid Typography: Scales between 20px and 32px */
+            font-size: clamp(20px, 2.5vw, 32px);
+            line-height: 1.3;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-top: auto; /* Pushes text to bottom if space exists */
+            margin-bottom: 30px;
+        }
+
+        /* --- Right Content Styling --- */
+        .review-info-right {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+        }
+
+        .portrait-container {
+            width: 100%;
+            /* Aspect Ratio is the key to responsiveness here. 
+               It replaces fixed width/height */
+            aspect-ratio: 4/5; 
+            overflow: hidden;
+            border-radius: 12px;
+            background-color: #ddd; /* Placeholder while loading */
+        }
+
+        .portrait-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .person-details {
+            /* Moved inside the left card for better mobile flow in HTML, 
+               but if structure is fixed, we style accordingly */
+        }
+
+        .person-name {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--color-text-heading);
+            margin-bottom: 2px;
+        }
+
+        .person-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--color-text-meta);
+        }
+
+        /* --- Navigation Buttons --- */
+        .navigation-container {
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+            margin-top: 30px;
+        }
+
+        .nav-button {
+            width: 56px;
+            height: 56px;
+            background-color: var(--color-btn-bg);
+            border: none;
+            border-radius: 50%; /* Circle looks better on modern UI */
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            flex-shrink: 0; /* Prevents buttons from squishing */
+            -webkit-tap-highlight-color: transparent; /* Remove mobile tap gray box */
+        }
+
+        .nav-button:hover {
+            background-color: var(--color-btn-hover);
+            transform: translateY(-2px);
+        }
+
+        .nav-button:active {
+            transform: translateY(0);
+        }
+
+        .nav-button svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--color-text-heading);
+        }
+
+        /* --- RESPONSIVE BREAKPOINTS --- */
+
+        /* Desktop / Landscape Tablets */
+        @media (min-width: 900px) {
+            .review-slide {
+                grid-template-columns: 1.2fr 0.8fr; /* Restore 2 columns */
+            }
+            
+            .review-card-left {
+                min-height: 500px;
+            }
+
+            .logo-container svg {
+                width: 50px;
+                height: 50px;
+            }
+        }
+
+        /* Tablets (Vertical) */
+        @media (max-width: 899px) {
+            .review-slide {
+                grid-template-columns: 1fr; /* Stack */
+                gap: 24px;
+            }
+
+            .portrait-container {
+                aspect-ratio: 16/9; /* Wider image on tablets/mobile looks better stacked */
+                max-height: 400px;
+            }
+            
+            .review-card-left {
+                order: 2; /* Put text below image on mobile? Or keep top. 
+                           Current: Text (1), Image (2). Let's keep existing flow. */
+            }
+        }
+
+        /* Mobile Phones */
+        @media (max-width: 600px) {
+            .review-section {
+                padding: 30px 20px;
+            }
+
+            .navigation-container {
+                justify-content: space-between; /* Spread buttons for easier thumb access */
+                width: 100%;
+            }
+            
+            .nav-button {
+                width: 48px;
+                height: 48px; /* Slightly smaller but still touch-friendly */
+            }
+
+            /* On mobile, maybe we want the image square or slightly taller */
+            .portrait-container {
+                aspect-ratio: 1/1; 
+            }
+        }
