@@ -376,5 +376,3 @@ This project is available under the MIT License. Commercial use requires attribu
 ---
 
 *Obelisk demonstrates how modern CSS and JavaScript can create performant, accessible, and maintainable UI components. The component serves as both a production-ready solution and an educational resource for advanced front-end development practices.*
- 
- 
