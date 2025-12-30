@@ -1,4 +1,4 @@
-# Obelisk | Responsive Review Component
+# Obelisk
 
 ## Technical Architecture Documentation
 
