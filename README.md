@@ -5,6 +5,8 @@
 ### Project Overview
 Obelisk is a sophisticated, production-ready testimonial slider component implementing modern CSS architecture principles with comprehensive accessibility features. This component demonstrates enterprise-grade front-end engineering with a focus on performance, maintainability, and user experience across all device types.
 
+<img width="1920" height="1182" alt="obelisk" src="https://github.com/user-attachments/assets/b72da6e9-7ee1-45c6-8380-f62c5d01c0dd" />
+
 ## Live Deployment
 [View Live Demo](https://lefajmofokeng.github.io/Obelisk)
 
